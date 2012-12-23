@@ -1,0 +1,8 @@
+
+<h1>IRC Channels</h1>
+
+<ol>
+<% @irc_channels.each do |irc_channel| %>
+  <li><%= link_to(irc_channel.name, irc_channel_path(irc_channel)) %></li>
+<% end %>
+</ol>
