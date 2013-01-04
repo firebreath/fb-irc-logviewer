@@ -5,7 +5,8 @@ class LogFile < ActiveRecord::Base
 
   def self.new_from_file_name(irc_channel, file_name)
     if file_name =~ /(\d{8})/
-      return LogFile.where(:irc_channel_id => irc_channel.id, :file_name => File.basename(file_name)).first_or_create!(:file_date => Date.strptime($1, '%Y%m%d'))
+      return LogFile.where(:irc_channel_id => irc_channel.id, :file_name => File.basename(file_name))
+        .first_or_create!(:file_date => Date.strptime($1, '%Y%m%d'))
     end
     return nil
   end

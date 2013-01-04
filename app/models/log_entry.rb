@@ -4,15 +4,16 @@ class LogEntry < ActiveRecord::Base
 
   # [18:56:33] <taxilian_away> jakepetroules: yes, that is correct
   def self.new_from_line(log_file, line)
-    return unless line
+    return unless log_file && line
+    line.chomp!
     begin
       if line =~ /\[([\d\:]+)\] <(.*?)>/
         line_time = $1
         line_who  = $2
 
         file_date = log_file.file_date.strftime('%Y%m%d')
-        log_when = Date.strptime("#{file_date} #{line_time}", "%Y%m%d %H:%M:%S")
-        LogEntry.create!(:log_file_id => log_file.id,  :when => log_when, :who => line_who, :what => line)
+        log_when = Time.strptime("#{file_date} #{line_time}", "%Y%m%d %H:%M:%S")
+        log_file.log_entries.where(:when => log_when, :who => line_who, :what => line).first_or_create!
       end
     rescue Exception => e
       puts "#{log_file.file_name}: unable to load: #{line}\nmessage:#{e.to_s}"
