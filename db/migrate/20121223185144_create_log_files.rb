@@ -7,7 +7,11 @@ class CreateLogFiles < ActiveRecord::Migration
 
       t.timestamps
     end
-    execute "alter table log_files add constraint fk_log_files_irc_channel_id foreign key (irc_channel_id) references irc_channels(id)"
+
+    add_index :log_files, :irc_channel_id
+
+    # kxm: mysql specific
+    #execute "alter table log_files add constraint fk_log_files_irc_channel_id foreign key (irc_channel_id) references irc_channels(id)"
   end
 
   def down

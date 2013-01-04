@@ -30,7 +30,8 @@ ActiveRecord::Schema.define(:version => 20121223185356) do
     t.datetime "updated_at",  :null => false
   end
 
-  add_index "log_entries", ["log_file_id"], :name => "fk_log_entries_log_file_id"
+  add_index "log_entries", ["log_file_id"], :name => "index_log_entries_on_log_file_id"
+  add_index "log_entries", ["who", "when", "what"], :name => "index_log_entries_on_who_and_when_and_what"
 
   create_table "log_files", :force => true do |t|
     t.integer  "irc_channel_id"
@@ -40,6 +41,6 @@ ActiveRecord::Schema.define(:version => 20121223185356) do
     t.datetime "updated_at",     :null => false
   end
 
-  add_index "log_files", ["irc_channel_id"], :name => "fk_log_files_irc_channel_id"
+  add_index "log_files", ["irc_channel_id"], :name => "index_log_files_on_irc_channel_id"
 
 end
