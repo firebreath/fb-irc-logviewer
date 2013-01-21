@@ -1,6 +1,6 @@
 <h2><%= link_to("IRC Log Viewer", root_path) %> &raquo; <%= link_to @log_file.irc_channel.name, irc_channel_path(@log_file.irc_channel) %> &raquo; <%= @log_file.file_date %></h2>
 <ol>
-<% @log_entries.each do |log_entry| %>
+<% @log_entries.reverse_each do |log_entry| %>
   <li> <%= log_entry.what %></li>
 <% end %>
 </ol>
