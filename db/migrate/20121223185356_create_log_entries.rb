@@ -4,7 +4,7 @@ class CreateLogEntries < ActiveRecord::Migration
       t.integer :log_file_id
       t.timestamp :when
       t.string :who
-      t.string :what
+      t.text :what
 
       t.timestamps
     end

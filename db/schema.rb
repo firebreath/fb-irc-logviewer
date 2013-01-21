@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(:version => 20121223185356) do
     t.integer  "log_file_id"
     t.datetime "when"
     t.string   "who"
-    t.string   "what"
+    t.text     "what"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
