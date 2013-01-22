@@ -1,6 +1,20 @@
 <h2><%= link_to("IRC Log Viewer", root_path) %> &raquo; <%= link_to @log_file.irc_channel.name, irc_channel_path(@log_file.irc_channel) %> &raquo; <%= @log_file.file_date %></h2>
-<ol>
+<table class="table table-striped">
+<thead>
+    <tr class="info"> 
+        <th>IRC Nick</th>
+        <th>Time (GMT-7)</th>
+        <th>Message</th>
+    </tr>
+</thead>
+<tbody>
 <% @log_entries.reverse_each do |log_entry| %>
-  <li> <%= log_entry.what %></li>
+    <tr>
+        <td style="color: #d14;"><%= log_entry.who %></td>
+        <td style="text-align: center; color: #41d;"><%= log_entry.when.getlocal.strftime("%H:%m") %></td>
+        <td><%= log_entry.what.gsub(/^\[.*?\] \<.*?\> /, '') %></td>
+    </tr>
 <% end %>
-</ol>
+</tbody>
+</table>
+
