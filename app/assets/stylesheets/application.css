@@ -20,3 +20,11 @@
   text-align: center;
   color: #41d;
 }
+
+.log_cluster_separator {
+  margin: 4px 0;
+  border: 0;
+  border-top: 1px solid rgb(221, 221, 221);
+  border-bottom: 1px solid #ffffff;
+  width: 100%;
+}

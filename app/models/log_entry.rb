@@ -22,4 +22,29 @@ class LogEntry < ActiveRecord::Base
       puts "#{log_file.file_name}: unable to load: #{line}\nmessage:#{e.to_s}"
     end
   end
+
+
+  # takes a time-sorted array of LogEntry records
+  # returns an array of arrays of LogEntry records, clustered around who and when
+  def self.cluster(entries)
+    clustered = []
+
+    prev_who = prev_when = ''
+    current_cluster = []
+    entries.each do |e|
+      cluster = (prev_who == e.who && e.when - prev_when < 500 )
+
+      unless cluster
+        clustered.push current_cluster if current_cluster.size > 0
+        current_cluster = []
+      end
+
+      current_cluster.push e
+
+      prev_who = e.who
+      prev_when = e.when
+    end
+
+    return clustered
+  end
 end
