@@ -11,3 +11,12 @@
  *= require_self
  *= require_tree .
  */
+
+.log_entry_who {
+  color: #d14;
+}
+
+.log_entry_when {
+  text-align: center;
+  color: #41d;
+}
