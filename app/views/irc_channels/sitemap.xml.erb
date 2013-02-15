@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><%= "#{request.protocol}#{request.host_with_port}" %></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+  <loc><%= "#{request.protocol}#{request.host_with_port}" %></loc>
+  <changefreq>monthly</changefreq>
+</url>
+
 <% @irc_channels.each do |irc_channel| %>
-  <url><%= "#{request.protocol}#{request.host_with_port}#{irc_channel_path(irc_channel)}" %></url>
-  <% irc_channel.log_files.each do |log_file| %>
-    <url><%= "#{request.protocol}#{request.host_with_port}#{irc_channel_log_file_path(irc_channel, log_file)}" %></url>
+  <url>
+    <loc><%= "#{request.protocol}#{request.host_with_port}#{irc_channel_path(irc_channel)}" %></loc>
+    <changefreq>daily</changefreq>
+  </url>
+  <% irc_channel.log_files.order("id desc").each_with_index do |log_file, i| %>
+    <url>
+      <loc><%= "#{request.protocol}#{request.host_with_port}#{irc_channel_log_file_path(irc_channel, log_file)}" %></loc>
+      <changefreq><%= i == 0 ? 'daily' : 'monthly' %></changefreq>
+    </url>
   <% end %>
 <% end %>
 </urlset>
