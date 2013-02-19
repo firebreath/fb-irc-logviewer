@@ -1,0 +1,6 @@
+<%= form_tag irc_channel_search_path(irc_channel), :method => 'get' do %>
+  <p>
+    <%= text_field_tag :query, params[:query] %>
+    <%= submit_tag :Search, :name => nil %>
+  </p>
+<% end %>

@@ -1,4 +1,5 @@
 <h2><%= link_to("IRC Log Viewer", root_path) %> &raquo; <%= @irc_channel.name %></h2>
+<%= render :partial => 'search/form', :locals => { :irc_channel => @irc_channel } %>
 <% @log_files.each do |log_file| %>
   <span style="padding: 10px 8px 8px 10px;"><%= link_to(log_file.file_date, irc_channel_log_file_path(@irc_channel, log_file)) %></span>
 <% end %>

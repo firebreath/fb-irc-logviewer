@@ -1,6 +1,17 @@
 class LogEntry < ActiveRecord::Base
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
+
   attr_accessible :what, :when, :who, :log_file_id
   belongs_to :log_file
+
+  mapping do
+    indexes :id,   :index    => :not_analyzed
+    indexes :log_file_id, :index => :not_analyzed
+    indexes :who,  :analyzer => 'keyword'
+    indexes :what, :analyzer => 'snowball'
+    indexes :when, :type     => 'date'
+  end
 
   # [18:56:33] <taxilian_away> jakepetroules: yes, that is correct
   def self.new_from_line(log_file, line)

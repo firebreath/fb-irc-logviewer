@@ -13,9 +13,9 @@
     <tr>
       <td class="log_entry_who"><%= log_entry.who %></td>
       <td class="log_entry_when"><%= log_entry.when.getlocal.strftime("%H:%m") %></td>
-      <td><%= log_entry.what %>
+      <td><a class="named_a" name="log_entry_<%= log_entry.id %>"><%= log_entry.what %></a>
         <% clustered_log_entry.each do |log_entry| %>
-          <hr class="log_cluster_separator"/><%= log_entry.what %>
+          <hr class="log_cluster_separator"/><a class="named_a" name="log_entry_<%= log_entry.id %>"><%= log_entry.what %></a>
         <% end %>
       </td>
     </tr>

@@ -13,3 +13,20 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(function() {
+  // make table rows clickable
+  $('tr').each(function(index) {
+    if ($(this).find('td:first > a').attr('href') != undefined) {
+      $(this).css('cursor', 'pointer');
+      $(this).click( function() {
+        window.location = $(this).find('a').attr('href');
+      });
+    }
+  });
+
+  if (document.location.hash) {
+    $("a[name="+document.location.hash.substr(1)+"]").addClass("search_result");
+  }
+
+});

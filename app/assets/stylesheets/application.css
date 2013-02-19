@@ -19,6 +19,7 @@
 .log_entry_when {
   text-align: center;
   color: #41d;
+  width: 80px;
 }
 
 .log_cluster_separator {
@@ -27,4 +28,22 @@
   border-top: 1px solid rgb(221, 221, 221);
   border-bottom: 1px solid #ffffff;
   width: 100%;
+}
+
+input[type="submit"] {
+  margin-bottom: 10px;
+}
+
+.named_a {
+  color: #333;
+}
+
+.named_a:hover {
+  color: #333;
+  text-decoration: none;
+  cursor: default;
+}
+
+.search_result {
+  color: #FE1675;
 }

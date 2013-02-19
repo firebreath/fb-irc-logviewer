@@ -1,0 +1,28 @@
+<h2><%= link_to("IRC Log Viewer", root_path) %> &raquo; <%= @irc_channel.name %></h2>
+<%= render :partial => 'search/form', :locals => { :irc_channel => @irc_channel } %>
+
+<h3><%= @results.total %> results</h3>
+
+<% if @results.size > 0 %>
+<table class="table table-striped">
+  <thead>
+    <tr class="info">
+      <th>IRC Nick</th>
+      <th>Date</th>
+      <th>Time (GMT-7)</th>
+      <th>Message</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @results.each do |log_entry| %>
+      <tr>
+        <td class="log_entry_who"><%= link_to log_entry.who, irc_channel_log_file_path(@irc_channel, log_entry.log_file, :anchor => "log_entry_#{log_entry.id}") %></td>
+        <td class="log_entry_when"><%= log_entry.when.getlocal.strftime("%Y-%m-%d") %></td>
+        <td class="log_entry_when"><%= log_entry.when.getlocal.strftime("%H:%m") %></td>
+        <td><%= log_entry.what %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @results %>
+<% end %>

@@ -7,6 +7,8 @@ gem 'rails', '3.2.10'
 
 #gem 'mysql2'
 gem 'pg'
+gem 'tire'
+gem 'will_paginate'
 
 
 # Gems used only for assets and not required
