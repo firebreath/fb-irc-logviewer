@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
   <loc><%= "#{request.protocol}#{request.host_with_port}" %></loc>
-  <changefreq>monthly</changefreq>
+  <changefreq>daily</changefreq>
 </url>
 
 <% @irc_channels.each do |irc_channel| %>
@@ -13,7 +13,7 @@
   <% irc_channel.log_files.order("id desc").each_with_index do |log_file, i| %>
     <url>
       <loc><%= "#{request.protocol}#{request.host_with_port}#{irc_channel_log_file_path(irc_channel, log_file)}" %></loc>
-      <changefreq><%= i == 0 ? 'daily' : 'monthly' %></changefreq>
+      <changefreq><%= i == 0 ? 'hourly' : 'daily' %></changefreq>
     </url>
   <% end %>
 <% end %>
